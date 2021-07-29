@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:showIn="navigation_view">
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@id/navigation_listFragment"
+            android:icon="@drawable/ic_list"
+            android:title="@string/menu_drawer_real_estates"/>
+
+        <item
+            android:id="@id/navigation_settingsDialogFragment"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/menu_drawer_settings"/>
+
+        <item
+            android:id="@id/navigation_searchFragment"
+            android:icon="@drawable/ic_filter_list"
+            android:title="@string/menu_drawer_search"/>
+
+    </group>
+
+</menu>

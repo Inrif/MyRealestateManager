@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="152dp"
+    android:orientation="vertical"
+    android:id="@+id/rm_list_cardview"
+    android:padding="4dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="152dp"
+    android:orientation="horizontal">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/rm_photo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/rm1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/rm_type"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/flat"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/rm_city"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/manhattan"/>
+
+        <TextView
+            android:id="@+id/rm_price"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/_17_870_000"
+            android:textColor="#FF0000"/>
+
+
+    </LinearLayout>
+
+<view
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+ android:layout_marginTop="150dp"
+    android:background="#F1EAEA"/>
+</LinearLayout>
+        
+ 
+
+
+
+</androidx.cardview.widget.CardView>

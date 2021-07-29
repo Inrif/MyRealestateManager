@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.RMDetailFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/text_margin"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/text_margin"
+        android:text="@string/media"
+        android:id="@+id/rm_fragment_media_title"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/text_margin"
+            android:orientation="horizontal">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="@dimen/text_margin"
+        tools:orientation="horizontal"
+        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_photo"
+        android:id="@+id/rm_fragment_detail_photo_recyclerview"/>
+
+        <com.google.android.material.textview.MaterialTextView
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+            android:id="@+id/rm_fragment_detail_no_data"/>
+        </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginStart="@dimen/text_margin"
+        android:text="@string/description"
+        android:id="@+id/rm_fragment_detail_description_title"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="@dimen/text_margin"
+        android:text="@string/description_text"
+        android:id="@+id/rm_fragment_detail_description"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginStart="@dimen/text_margin"
+        android:text="@string/characteristics"
+        android:id="@+id/rm_fragment_detail_characteristics_title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="@dimen/text_margin"
+        android:text="@string/Characteristics_description"
+        android:id="@+id/rm_fragment_detail_characteristics"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginStart="@dimen/text_margin"
+        android:text="@string/location"
+        android:id="@+id/rm_fragment_detail_location_title"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="@dimen/text_margin"
+        android:text="@string/location_description"
+        android:id="@+id/rm_fragment_detail_location"/>
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="@dimen/text_margin"
+        android:id="@+id/rm_fragment_detail_map_lite"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        map:cameraZoom="17"
+        map:mapType="normal"
+        map:liteMode="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginStart="@dimen/text_margin"
+        android:text="@string/poi"
+        android:id="@+id/rm_fragment_detail_title_poi"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="@dimen/text_margin"
+        tools:orientation="horizontal"
+        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_poi"
+        android:id="@+id/rm_fragment_detail_poi_recyclerview"/>
+
+
+
+
+</LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,39 @@
+<resources>
+    <dimen name="text_margin">16dp</dimen>
+
+    <!-- Elevation -->
+    <dimen name="elevation_toolbar">4dp</dimen>
+    <dimen name="elevation_card">4dp</dimen>
+
+    <!-- NavigationView Header height -->
+    <dimen name="navigation_header_height">220dp</dimen>
+
+    <!-- CardView Size -->
+    <dimen name="card_item_photo_width">150dp</dimen>
+    <dimen name="card_item_photo_height">180dp</dimen>
+    <dimen name="card_item_real_estate_height">80dp</dimen>
+    <dimen name="card_item_poi_size">150dp</dimen>
+
+    <!-- ImageView Size -->
+    <dimen name="image_view_item_real_estate_width">@dimen/card_item_real_estate_height</dimen>
+    <dimen name="image_view_item_photo_width">@dimen/card_item_photo_width</dimen>
+    <dimen name="image_view_item_photo_height">@dimen/card_item_photo_height</dimen>
+    <dimen name="filter_photo_height">60dp</dimen>
+
+    <!-- VideoView Size -->
+    <dimen name="video_height">200dp</dimen>
+
+    <!-- Margin -->
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_little">8dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_big">48dp</dimen>
+    <dimen name="margin_heavy">88dp</dimen>
+
+    <!-- Padding -->
+    <dimen name="padding_normal">16dp</dimen>
+    <dimen name="padding_little">8dp</dimen>
+
+    <!-- Button -->
+    <dimen name="width_dialog_button">70dp</dimen>
+</resources>

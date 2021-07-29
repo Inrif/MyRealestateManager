@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/menu_activity_main_add"
+        android:icon="@drawable/ic_baseline_add_24"
+        app:showAsAction="ifRoom"
+        android:title="@string/add">
+    </item>
+    <item
+        android:id="@+id/menu_activity_main_create"
+        android:icon="@drawable/ic_baseline_create_24"
+        app:showAsAction="ifRoom"
+        android:title="@string/create">
+    </item>
+    <item
+        android:id="@+id/menu_activity_main_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        app:showAsAction="ifRoom"
+        android:title="@string/search">
+    </item>
+</menu>

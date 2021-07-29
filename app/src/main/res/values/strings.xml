@@ -1,0 +1,259 @@
+<resources>
+    <string name="app_name">RealestateManager</string>
+    <string name="search">Search</string>
+    <string name="add">Add</string>
+    <string name="create">Create</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="flat">Flat</string>
+    <string name="manhattan">Manhattan</string>
+    <string name="_17_870_000">$17,870,000</string>
+    <string name="media">Media</string>
+    <string name="description">Description</string>
+    <string name="description_text">Located in the city center, this house has great advantages. A stone\'s throw away you will find a shopping center.</string>
+    <string name="surface">Surface</string>
+    <string name="characteristics">Characteristics</string>
+    <string name="Characteristics_description">Surface 750 sq m, Number of Rooms 8, Number of Bathrooms 5</string>
+    <string name="location">Location</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="no_data">No data</string>
+
+    <!-- MainActivity.kt -->
+    <string name="navigation_drawer_open" translatable="false">"Open navigation drawer"</string>
+    <string name="navigation_drawer_close" translatable="false">"Close navigation drawer"</string>
+    <string name="add_real_estate_toolbar">Add real estate</string>
+    <string name="edit_real_estate_toolbar">Edit real estate</string>
+    <string name="search_real_estate_toolbar">Search real estate</string>
+
+    <!-- BaseFragment.kt -->
+    <string name="permission_denied">Permission denied</string>
+
+    <!-- CreatorFragment.kt -->
+    <string name="title_marker">Real Estate</string>
+    <string name="creation_photo_already_present">This photo is already present in database</string>
+    <string name="creation_photo_cancel">Photo canceled</string>
+    <string name="creation_video_cancel">Video canceled</string>
+    <string name="creator_search_cancel">Search canceled</string>
+    <string name="no_pois">No point of interest has been selected</string>
+    <string name="no_pois_search">No point of interest searched</string>
+    <string name="no_distance">No distance to search point of interest</string>
+    <string name="no_address">No address</string>
+    <string name="message_creator_user_choice">Are you sure to create this real estate?</string>
+
+    <!-- DetailsFragment.kt -->
+    <string name="details_characteristics">Surface: %1$.2f m2\nNumber of rooms: %2$d</string>
+    <string name="details_no_description">No description</string>
+    <string name="details_no_street_number">[Street Number: No data]</string>
+    <string name="details_no_street">[Street: No data]</string>
+    <string name="details_no_city">[City: No data]</string>
+    <string name="details_no_country">[Country: No data]</string>
+    <string name="details_impossible">Detail impossible: To choice a real estate</string>
+
+    <!-- EditFragment.kt -->
+    <string name="edit_no_type">No type</string>
+    <string name="edit_no_price">No price</string>
+    <string name="edit_impossible">Edit impossible</string>
+    <string name="message_edit_user_choice">Are you sure to update this real estate?</string>
+
+    <!-- SearchFragment.kt -->
+    <string name="error_into_price_seekbar">Error into price bars</string>
+    <string name="error_into_surface_seekbar">Error into surface bars</string>
+    <string name="error_into_room_seekbar">Error into room bars</string>
+
+    <!-- SettingsDialogFragment.kt -->
+    <string name="title_settings_dialog_fragment">Settings</string>
+
+    <!-- PhotoDialogFragment.kt -->
+    <string name="title_photo_dialog_fragment">Photo selected</string>
+
+    <!-- RealEstateNotification.kt & RealEstateViewModel.kt -->
+    <string name="notification_title">Notification Real Estate Manager</string>
+    <string name="notification_channel_name">Notification for Real Estate Manager</string>
+    <string name="notification_channel_description">This channel is the channel for Real Estate Manager.</string>
+    <string name="notification_message">Creation of RealEstate\n\ttype: %1$s\n\tPrice: %2$.2f\$</string>
+
+    <!-- activity_main_menu_drawer.xml -->
+    <string name="menu_drawer_settings">SETTINGS</string>
+    <string name="menu_drawer_real_estates">REAL ESTATES</string>
+    <string name="menu_drawer_search">COMPLEX SEARCH</string>
+
+    <!-- nav_graph.xml -->
+    <string name="navigation_list_name">Real estate list</string>
+    <string name="navigation_details_name">Details</string>
+    <string name="navigation_settings_name">Settings</string>
+    <string name="navigation_location_name">Location</string>
+    <string name="navigation_creator_name">Creator</string>
+    <string name="navigation_edit_name">Edit</string>
+    <string name="navigation_search_name">Search</string>
+
+
+    <string name="location_description">29 Rue de Behanzin \n\n Cotonou \n\n Benin</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="create_a_new_real_estate">Create a new real estate</string>
+    <string name="school_poi">School</string>
+    <string name="restaurant_poi">Restaurant</string>
+    <string name="doctor_poi">Doctor</string>
+    <string name="hospital_poi">Hospital</string>
+    <string name="airport_poi">Airport</string>
+    <string name="search_poi">Search</string>
+    <string name="create_a_real_estate">Create a real estate</string>
+    <string name="spinner_type">Type</string>
+    <string name="price_input">Price</string>
+    <string name="surface_input">Surface</string>
+    <string name="addresse_input">Addresse</string>
+    <string name="city_input">City</string>
+    <string name="postcode_input">PostCode</string>
+    <string name="country_input">Country</string>
+    <string name="poi">Points of interest</string>
+
+
+    <!-- SettingsDialogFragment.kt -->
+    <string name="title_settings_dialog">Settings</string>
+    <!-- PhotoDialogFragment.kt -->
+    <string name="title_photo_dialog">Photo selected</string>
+
+
+    <!-- item.photo.xml & item_real_estate.xml -->
+    <string name="menu_drawer_details">DETAILS</string>
+
+    <!-- fragment_creator.xml & dialog_selected_photo.xml -->
+    <string name="hint_type">Type</string>
+    <string name="hint_price">Price</string>
+    <string name="hint_surface">Surface</string>
+    <string name="hint_number_of_room">Number of room</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_address">Address</string>
+    <string name="hint_city">City</string>
+    <string name="hint_post_code">Post code</string>
+    <string name="hint_country">Country</string>
+    <string name="hint_date">Effective date</string>
+    <string name="hint_distance">Search radius (meter)</string>
+    <string name="distance_poi">200</string>
+    <string name="creator_enable">Is enable</string>
+    <string name="creator_real_estate_lack_information">Lack of information</string>
+    <string name="search_poi_button">Search</string>
+    <string-array name="creator_types">
+        <item>Flat</item>
+        <item>House</item>
+        <item>Duplex</item>
+        <item>Loft</item>
+        <item>Penthouse</item>
+        <item>Manor</item>
+        <item>Other</item>
+    </string-array>
+    <string name="chip_school">School</string>
+    <string name="chip_restaurant">Restaurant</string>
+    <string name="chip_doctor">Doctor</string>
+    <string name="chip_hospital">Hospital</string>
+    <string name="chip_airport">airport</string>
+
+    <!-- fragment_r_m_details.xml -->
+    <string name="title_media_details">Media</string>
+    <string name="title_description_details">Description</string>
+    <string name="title_description_characteristics">Characteristics</string>
+    <string name="title_description_address">Address</string>
+    <string name="title_description_poi">Points of interest</string>
+    <string name="select_price_range">Select price range</string>
+
+    <!-- fragment_search.xml -->
+    <string name="select_price_min">Select min price</string>
+    <string name="select_price_max">Select max price</string>
+    <string name="select_min_surface">Select min surface</string>
+    <string name="select_max_surface">Select max surface</string>
+    <string name="select_min_room">Select min room</string>
+    <string name="select_max_room">Select max room</string>
+
+
+</resources>

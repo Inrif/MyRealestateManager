@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="ToolbarStyle" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="titleTextColor">@android:color/white</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:elevation" tools:targetApi="21">@dimen/elevation_toolbar</item>
+    </style>
+</resources>

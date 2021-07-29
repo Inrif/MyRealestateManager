@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- TextView -->
+    <integer name="one_line_text_view">1</integer>
+
+    <!-- Gradient filter -->
+    <item name="opacity_filter" type="integer" format="float">0.6</item>
+
+    <!-- Guideline -->
+    <item name="vertical_guideline_ratio" type="integer" format="float">0.3</item>
+
+    <!-- Weight -->
+    <integer name="horizontal_weight_address_left">35</integer>
+    <integer name="horizontal_weight_address_right">65</integer>
+
+</resources>

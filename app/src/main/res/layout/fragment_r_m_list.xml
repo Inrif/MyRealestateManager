@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.RMListFragment"
+    android:id="@+id/list_fragment"
+    android:orientation="horizontal">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rm_fragment_list_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        tools:listitem="@layout/item_list_rm">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <!-- MaterialTextView: No data -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/rm_fragment_list_no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_data"/>
+
+</LinearLayout>
