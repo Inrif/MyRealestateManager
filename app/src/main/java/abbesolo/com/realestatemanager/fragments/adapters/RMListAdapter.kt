@@ -49,7 +49,7 @@ class RMListAdapter( private val mCallback: RMAdapterListener? = null
     /**
      * Configures the design of each item
      * @param holder        a [RealEstateViewHolder] that corresponds to the item
-     * @param realEstate    a [RealEstateWithPhotos]
+     * @param realEstate    a [RMAndPhotos]
      */
     private fun configureDesign(holder: RealEstateViewHolder, realEstate: RMAndPhotos) {
         // CardView
@@ -113,7 +113,7 @@ class RMListAdapter( private val mCallback: RMAdapterListener? = null
 
     /**
      * Configures the background of item
-     * @param realEstate a [RealEstateWithPhotos]
+     * @param realEstate a [RMAndPhotos]
      */
     private fun configureBackgroundItem(realEstate: RMAndPhotos) {
         realEstate.rm?.mId?.let { id ->
@@ -139,8 +139,8 @@ class RMListAdapter( private val mCallback: RMAdapterListener? = null
     // -- Real Estate --
 
     /**
-     * Updates data of [RealEstateAdapter]
-     * @param newRealEstates a [List] of [RealEstateWithPhotos]
+     * Updates data of [RMListAdapter]
+     * @param newRealEstates a [List] of [RMAndPhotos]
      */
     fun updateData(newRealEstates: List<RMAndPhotos>) {
         // Optimizes the performances of RecyclerView

@@ -1,7 +1,7 @@
 package abbesolo.com.realestatemanager
 
 import androidx.multidex.MultiDexApplication
-import com.mancel.yann.realestatemanager.koin.appModule
+import abbesolo.com.realestatemanager.koin.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

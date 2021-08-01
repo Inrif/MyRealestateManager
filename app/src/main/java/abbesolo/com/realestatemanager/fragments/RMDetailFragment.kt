@@ -9,7 +9,6 @@ import abbesolo.com.realestatemanager.models.RMAndPhotos
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_r_m_detail.view.*
 import kotlinx.android.synthetic.main.fragment_r_m_details.view.*
 import java.util.*
 
-@Suppress("UNREACHABLE_CODE")
+
 class RMDetailFragment :RMBaseFragment(), RMAdapterListener, OnMapReadyCallback {
 
     // FIELDS --------------------------------------------------------------------------------------
@@ -197,7 +196,7 @@ class RMDetailFragment :RMBaseFragment(), RMAdapterListener, OnMapReadyCallback 
         this.mViewModel
             .getRealEstateWithPhotosById(realEstateId = this.mItemId)
             .observe(this.viewLifecycleOwner,
-                Observer { this.configureUI(it) }
+                 { this.configureUI(it) }
             )
     }
 
@@ -209,7 +208,7 @@ class RMDetailFragment :RMBaseFragment(), RMAdapterListener, OnMapReadyCallback 
             .getRealEstateAndInterestPointById(realEstateId = this.mItemId)
             .observe(
                 this.viewLifecycleOwner,
-                Observer {
+                {
                     it.poi?.let { poiList ->
                         // Sorts the list on its name from A to Z
                         Collections.sort(poiList, POI.AZTitleComparator())
@@ -224,7 +223,7 @@ class RMDetailFragment :RMBaseFragment(), RMAdapterListener, OnMapReadyCallback 
 
     /**
      * Configures UI
-     * @param realEstateWithPhotos a [RealEstateWithPhotos]
+     * @param realEstateWithPhotos a [RMAndPhotos]
      */
     private fun configureUI(realEstateWithPhotos: RMAndPhotos?) {
         realEstateWithPhotos?.let {

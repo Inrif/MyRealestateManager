@@ -1,10 +1,7 @@
 package abbesolo.com.realestatemanager.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import abbesolo.com.realestatemanager.R
 import abbesolo.com.realestatemanager.fragments.adapters.RMAdapterListener
 import abbesolo.com.realestatemanager.fragments.adapters.RMListAdapter
@@ -12,7 +9,6 @@ import abbesolo.com.realestatemanager.models.RMAndPhotos
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.annotation.LayoutRes
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -220,7 +216,7 @@ class RMSearchFragment : RMBaseFragment(), RMAdapterListener {
             this.mViewModel
                 .getMultiSearchEvenIfNull()?.observe(
                     this.viewLifecycleOwner,
-                    Observer { this.configureUI(it) }
+                    { this.configureUI(it) }
                 )
         }
     }
@@ -352,7 +348,7 @@ class RMSearchFragment : RMBaseFragment(), RMAdapterListener {
             )
             .observe(
                 this.viewLifecycleOwner,
-                Observer { this.configureUI(it) }
+                { this.configureUI(it) }
             )
     }
 
@@ -360,7 +356,7 @@ class RMSearchFragment : RMBaseFragment(), RMAdapterListener {
 
     /**
      * Configures UI
-     * @param realEstatesWithPhotos a [List] of [RealEstateWithPhotos]
+     * @param realEstatesWithPhotos a [List] of [RMAndPhotos]
      */
     private fun configureUI(realEstatesWithPhotos: List<RMAndPhotos>) {
         this.mAdapter.updateData(realEstatesWithPhotos)

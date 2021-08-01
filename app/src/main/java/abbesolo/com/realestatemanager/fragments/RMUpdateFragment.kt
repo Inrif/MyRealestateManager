@@ -1,10 +1,7 @@
 package abbesolo.com.realestatemanager.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import abbesolo.com.realestatemanager.R
 import abbesolo.com.realestatemanager.dialogs.DialogListener
 import abbesolo.com.realestatemanager.dialogs.RMPhotoDialog
@@ -20,7 +17,6 @@ import android.text.TextWatcher
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.annotation.LayoutRes
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager

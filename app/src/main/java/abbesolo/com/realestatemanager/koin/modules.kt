@@ -1,4 +1,4 @@
-package com.mancel.yann.realestatemanager.koin
+package abbesolo.com.realestatemanager.koin
 
 import abbesolo.com.realestatemanager.database.Database
 import abbesolo.com.realestatemanager.repositories.*

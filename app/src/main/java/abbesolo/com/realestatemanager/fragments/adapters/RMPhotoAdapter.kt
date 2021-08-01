@@ -49,7 +49,7 @@ class RMPhotoAdapter (private val mCallback: RMAdapterListener? = null,
 
     /**
      * Configures the design of each item
-     * @param holder    a [PhotoViewHolder] that corresponds to the item
+     * @param holder    a [RMPhotoViewHolder] that corresponds to the item
      * @param photo     a [Photo]
      */
     private fun configureDesign(holder: RMPhotoViewHolder, photo: Photo) {
@@ -103,7 +103,7 @@ class RMPhotoAdapter (private val mCallback: RMAdapterListener? = null,
     // -- Photo --
 
     /**
-     * Updates data of [PhotoAdapter]
+     * Updates data of [RMPhotoAdapter]
      * @param newPhotos a [List] of [Photo]
      */
     fun updateData(newPhotos: List<Photo>) {

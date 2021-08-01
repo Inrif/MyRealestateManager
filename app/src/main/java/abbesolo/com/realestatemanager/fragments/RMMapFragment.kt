@@ -196,7 +196,7 @@ class RMMapFragment : RMBaseFragment(),
      * Configures the LiveData thanks to a simple format
      */
     private fun configureRealEstateLiveData() {
-        // todo - 14/04/2020 - Next feature: Add user's authentication instead of 1L
+
         this.mViewModel
             .getRealEstatesWithPhotosByUserId(userId = 1L)
             .observe(
@@ -311,7 +311,7 @@ class RMMapFragment : RMBaseFragment(),
     @SuppressLint("MissingPermission")
     private fun configureGoogleMapStyle() {
         // STYLE
-        // todo: 07/04/2020 - Add style map
+
 
         this.mGoogleMap?.let {
             // GESTURES

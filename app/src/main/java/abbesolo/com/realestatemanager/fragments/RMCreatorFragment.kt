@@ -1,10 +1,7 @@
 package abbesolo.com.realestatemanager.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import abbesolo.com.realestatemanager.R
 import abbesolo.com.realestatemanager.dialogs.DialogListener
 import abbesolo.com.realestatemanager.dialogs.RMPhotoDialog
@@ -25,7 +22,6 @@ import android.widget.AutoCompleteTextView
 import android.widget.MediaController
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.maps.CameraUpdateFactory

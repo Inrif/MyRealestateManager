@@ -99,7 +99,7 @@ class RMListFragment :  RMBaseFragment(), RMAdapterListener {
      * Configures the LiveData thanks to a simple format
      */
     private fun configureRealEstateLiveData() {
-        // todo - 06/04/2020 - Next feature: Add user's authentication instead of 1L
+
         this.mViewModel
             .getRealEstatesWithPhotosByUserId(userId = 1L)
             .observe(

@@ -3,9 +3,8 @@ package abbesolo.com.realestatemanager.fragments
 import android.view.View
 
 /**
- * Created by Yann MANCEL on 24/02/2020.
+ * Created by Romuald Hounsa on 21/06/2020.
  * Name of the project: RealEstateManager
- * Name of the package: com.mancel.yann.realestatemanager.views.fragments
  */
 interface FragmentListener {
 
