@@ -16,7 +16,7 @@ interface FragmentListener {
     fun showMessage(message: String)
 
     /**
-     * Called when the user has selected an item of [ListFragment]
+     * Called when the user has selected an item of [RMListFragment]
      * @param v The [View] that was clicked.
      */
     fun navigateToDetailsFragment(v: View?)

@@ -10,7 +10,7 @@ import androidx.room.Index
  * Copyright (c) 2020 abbesolo.com.realestatemanager. All rights reserved.
  * It is cross-reference table.
  *
- * Many-to-many relationships: many [RealEstate] and many [POI]
+ * Many-to-many relationships: many [RM] and many [POI]
  */
 
 @Entity(tableName = "rm_poi_join",

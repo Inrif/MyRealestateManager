@@ -11,12 +11,12 @@ interface PlaceRepository {
     // METHODS -------------------------------------------------------------------------------------
 
     /**
-     * Gets stream to Fetch the [List] of [InterestPoint]
+     * Gets stream to Fetch the [List] of [POI]
      * @param location  a [String] that contains the latitude/longitude around which to retrieve place information
      * @param radius    a [Double] that defines the distance (in meters) within which to return place results
      * @param types     a [String] that restricts the results to places matching the specified type
      * @param key       a [String] that contains your application's API key
-     * @return a [Single] of [List] of [InterestPoint]
+     * @return a [Single] of [List] of [POI]
      */
     fun getStreamToFetchPointsOfInterest(
         location: String,

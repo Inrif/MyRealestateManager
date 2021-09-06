@@ -11,7 +11,7 @@ import timber.log.Timber
  * Created by HOUNSA Romuald on 19/06/2020.
  * Copyright (c) 2020 abbesolo.com.realestatemanager. All rights reserved.
  *
- * A [LiveData] of [List] of [PointOfInterest] subclass.
+ * A [LiveData] of [List] of [POI] subclass.
  */
 class POIsSearchLiveData : LiveData<List<POI>>() {
 
@@ -40,7 +40,7 @@ class POIsSearchLiveData : LiveData<List<POI>>() {
 
     /**
      * Gets the POIs with an [Single]
-     * @param single a [Single] of [List] of [PointOfInterest]
+     * @param single a [Single] of [List] of [POI]
      */
     fun getPOIsSearchWithSingle(single: Single<List<POI>>) {
         // Creates stream
@@ -82,8 +82,8 @@ class POIsSearchLiveData : LiveData<List<POI>>() {
     }
 
     /**
-     * Adds all current [PointOfInterest]
-     * @param poiList a [List] of [PointOfInterest]
+     * Adds all current [POI]
+     * @param poiList a [List] of [POI]
      */
     fun addCurrentPOIs(poiList: List<POI>) {
         // MODE EDIT
@@ -114,8 +114,8 @@ class POIsSearchLiveData : LiveData<List<POI>>() {
     }
 
     /**
-     * Checks if the [PointOfInterest] is selected
-     * @param poi a [PointOfInterest]
+     * Checks if the [POI] is selected
+     * @param poi a [POI]
      */
     fun checkPOI(poi: POI) {
         this.mPOIs.forEach {
@@ -129,12 +129,12 @@ class POIsSearchLiveData : LiveData<List<POI>>() {
     }
 
     /**
-     * Gets all selected [PointOfInterest]
+     * Gets all selected [POI]
      */
     fun getSelectedPOIs(): List<POI> = this.mPOIs.filter { it.isSelected }
 
     /**
-     * Gets just new selected [PointOfInterest]
+     * Gets just new selected [POI]
      */
     // todo: 17/04/2020 - Remove it when the RealEstateViewModel#updateRealEstate method will be update
     fun getJustNewSelectedPOIs(): List<POI> =

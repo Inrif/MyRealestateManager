@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:map="http://schemas.android.com/apk/res-auto"
-
+    android:id="@+id/fragment_creator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.RMCreatorFragment">
@@ -21,6 +21,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:visibility="gone"
+                android:id="@+id/sold"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/sold"
+                app:layout_constraintBottom_toTopOf="@id/cardview_type"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
             <!-- MaterialCardView: Type -->
             <com.google.android.material.card.MaterialCardView
                 tools:visibility="gone"
@@ -32,7 +43,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:cardElevation="@dimen/elevation_card"
-                android:theme="@style/Theme.MaterialComponents.DayNight"
                 style="@style/Widget.MaterialComponents.CardView">
 
                 <!-- ConstraintLayout -->
@@ -65,8 +75,7 @@
                         app:layout_constraintBottom_toTopOf="@id/fragment_creator_price"
                         app:layout_constraintStart_toEndOf="@id/icon_home"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:errorEnabled="true"
-                        app:hintEnabled="true"
+                        app:errorEnabled="true" app:hintEnabled="true"
                         app:endIconMode="dropdown_menu"
                         app:boxBackgroundColor="@android:color/transparent"
                         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
@@ -123,7 +132,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:cardElevation="@dimen/elevation_card"
-                android:theme="@style/Theme.MaterialComponents.DayNight"
                 style="@style/Widget.MaterialComponents.CardView">
 
                 <!-- ConstraintLayout -->
@@ -235,7 +243,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:cardElevation="@dimen/elevation_card"
-                android:theme="@style/Theme.MaterialComponents.DayNight"
                 style="@style/Widget.MaterialComponents.CardView">
 
                 <!-- ConstraintLayout -->
@@ -404,7 +411,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:cardElevation="@dimen/elevation_card"
-                android:theme="@style/Theme.MaterialComponents.DayNight"
                 style="@style/Widget.MaterialComponents.CardView">
 
                 <!-- ConstraintLayout -->
@@ -427,6 +433,7 @@
 
                     <!-- SwitchMaterial: Enable -->
                     <com.google.android.material.switchmaterial.SwitchMaterial
+                        tools:visibility="gone"
                         android:id="@+id/fragment_creator_enable"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -437,7 +444,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         android:padding="@dimen/padding_normal"
                         android:text="@string/creator_enable"
-                        android:checked="true"/>
+                        android:checked="false"/>
 
                     <!-- TextInputLayout: Effective date -->
                     <com.google.android.material.textfield.TextInputLayout
@@ -480,7 +487,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:cardElevation="@dimen/elevation_card"
-                android:theme="@style/Theme.MaterialComponents.DayNight"
                 style="@style/Widget.MaterialComponents.CardView">
 
                 <!-- ConstraintLayout -->
@@ -545,7 +551,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:cardElevation="@dimen/elevation_card"
-                android:theme="@style/Theme.MaterialComponents.DayNight"
                 style="@style/Widget.MaterialComponents.CardView">
 
                 <!-- ConstraintLayout -->
@@ -613,7 +618,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:cardElevation="@dimen/elevation_card"
-                android:theme="@style/Theme.MaterialComponents.DayNight"
                 style="@style/Widget.MaterialComponents.CardView">
 
                 <!-- ConstraintLayout -->
@@ -756,6 +760,57 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+<!--            MaterielCardView : User-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardview_user"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginBottom="@dimen/margin_heavy"
+                app:layout_constraintTop_toBottomOf="@id/cardview_poi"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:cardElevation="@dimen/elevation_card"
+                style="@style/Widget.MaterialComponents.CardView">
+
+
+                    <!-- TextInputLayout: User -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fragment_creator_user"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_little"
+                        android:layout_marginStart="@dimen/margin_normal"
+                        android:layout_marginEnd="@dimen/margin_normal"
+                        app:layout_constraintTop_toBottomOf="@+id/fragment_creator_fab"
+                        app:layout_constraintBottom_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:hintEnabled="true"
+                        app:errorEnabled="true"
+                        app:background="@null"
+                        app:endIconMode="clear_text"
+                        app:boxBackgroundColor="@android:color/transparent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                        tools:ignore="NotSibling">
+
+                        <!-- TextInputEditText: User -->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="@string/hint_user"
+                            android:inputType="text"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
@@ -767,8 +822,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_normal"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/ic_add"
-        android:theme="@style/Theme.MaterialComponents.DayNight"
-        style="@style/FloatingActionButtonStyle"/>
+        android:src="@drawable/ic_baseline_add_24"
+        style="@style/FloatingActionButtonStyle"
+        android:contentDescription="add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

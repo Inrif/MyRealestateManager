@@ -8,7 +8,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".views.dialogs.SettingsDialogFragment">
+    tools:context=".dialogs.RMSettingsDialog">
 
     <!-- SwitchMaterial: On/Off -->
     <com.google.android.material.switchmaterial.SwitchMaterial

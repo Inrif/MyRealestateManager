@@ -7,7 +7,7 @@ import androidx.room.Relation
  * Created by Romuald Hounsa on 01/06/2020.
  * Copyright (c) 2020 abbesolo.com.realestatemanager. All rights reserved.
  *
- *  * One-to-many relationships: one [RealEstate] and many [Photo]
+ *  * One-to-many relationships: one [RM] and many [Photo]
  */
 data class RMAndPhotos (
     @Embedded

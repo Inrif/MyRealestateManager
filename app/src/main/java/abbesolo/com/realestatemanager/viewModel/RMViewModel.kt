@@ -89,9 +89,9 @@ class RMViewModel(
     }
 
     /**
-     * Gets the [User] with the id in argument
+     * Gets the [RMUser] with the id in argument
      * @param userId a [Long] that contains the user Id
-     * @return a [LiveData] of [User]
+     * @return a [LiveData] of [RMUser]
      */
     fun getUserById(userId: Long): LiveData<RMUser> {
         if (this.mUser == null) {
@@ -101,12 +101,13 @@ class RMViewModel(
     }
 
 
+
     // -- RM --
 
     /**
-     * Gets all [RealEstateWithPhotos] for an [User]
+     * Gets all [RMAndPhotos] for an [RMUser]
      * @param userId a [Long] that contains the user Id
-     * @return a [LiveData] of [List] of [RealEstateWithPhotos]
+     * @return a [LiveData] of [List] of [RMAndPhotos]
      */
     fun getRealEstatesWithPhotosByUserId(userId: Long): LiveData<List<RMAndPhotos>> {
         if (this.rmAndPhotosList == null) {
@@ -116,9 +117,9 @@ class RMViewModel(
     }
 
     /**
-     * Gets a [RealEstateWithPhotos] by its Id
+     * Gets a [RMAndPhotos] by its Id
      * @param realEstateId a [Long] that contains the real estate Id
-     * @return a [LiveData] of [RealEstateWithPhotos]
+     * @return a [LiveData] of [RMAndPhotos]
      */
     fun getRealEstateWithPhotosById(realEstateId: Long): LiveData<RMAndPhotos> {
         if (this.rmAndPhotos == null) {
@@ -129,9 +130,9 @@ class RMViewModel(
     }
 
     /**
-     * Gets a [RealEstateWithPointsOfInterest] by its Id
+     * Gets a [RMAndPoi] by its Id
      * @param realEstateId a [Long] that contains the real estate Id
-     * @return a [LiveData] of [RealEstateWithPointsOfInterest]
+     * @return a [LiveData] of [RMAndPoi]
      */
     fun getRealEstateAndInterestPointById(
         realEstateId: Long
@@ -144,14 +145,14 @@ class RMViewModel(
     }
 
     /**
-     * Gets all [RealEstateWithPhotos] by multi search
+     * Gets all [RMAndPhotos] by multi search
      * @param minPrice      a [Double] that contains the min price
      * @param maxPrice      a [Double] that contains the max price
      * @param minSurface    a [Double] that contains the min surface
      * @param maxSurface    a [Double] that contains the max surface
      * @param minNumberRoom a [Double] that contains the min room
      * @param maxNumberRoom a [Double] that contains the max room
-     * @return a [LiveData] of [RealEstateWithPhotos]
+     * @return a [LiveData] of [RMAndPhotos]
      */
     fun getRealEstatesAndPhotosByMultiSearch(
         minPrice: Double = 0.0,
@@ -522,31 +523,31 @@ class RMViewModel(
     }
 
     /**
-     * Adds all current [PointOfInterest]
-     * @param poiList a [List] of [PointOfInterest]
+     * Adds all current [POI]
+     * @param poiList a [List] of [POI]
      */
     fun addCurrentPOIs(poiList: List<POI>) = this.poisSearch?.addCurrentPOIs(poiList)
 
     /**
-     * Checks if the [PointOfInterest] is selected
-     * @param poi a [PointOfInterest]
+     * Checks if the [POI] is selected
+     * @param poi a [POI]
      */
     fun checkPOI(poi: POI) = this.poisSearch?.checkPOI(poi)
 
     /**
-     * Gets all selected [PointOfInterest]
+     * Gets all selected [POI]
      */
     fun getSelectedPOIs() =  this.poisSearch?.getSelectedPOIs()
 
     /**
-     * Gets just new selected [PointOfInterest]
+     * Gets just new selected [POI]
      */
     // todo: 17/04/2020 - Remove it when the RealEstateViewModel#updateRealEstate method will be update
     fun getJustNewSelectedPOIs() =  this.poisSearch?.getJustNewSelectedPOIs()
 
     /**
-     * Inserts several [PointOfInterest] into database
-     * @param pointsOfInterest  a [List] of [PointOfInterest]
+     * Inserts several [POI] into database
+     * @param pointsOfInterest  a [List] of [POI]
      * @param realEstateId      a [Long] that contains the real estate Id
      */
     private suspend fun insertPOIsWithRealEstateId(
@@ -627,8 +628,8 @@ class RMViewModel(
 
     /**
      * Inserts a [insertRealEstatePointOfInterestCrossRef] into database
-     * @param realEstateId      a [Long] that contains the [RealEstate] Id
-     * @param PointOfInterestId a [Long] that contains the [PointOfInterest] Id
+     * @param realEstateId      a [Long] that contains the [RM] Id
+     * @param PointOfInterestId a [Long] that contains the [POI] Id
      */
     private suspend fun insertRealEstatePointOfInterestCrossRef(
         realEstateId: Long,

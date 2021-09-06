@@ -5,19 +5,13 @@ package abbesolo.com.realestatemanager.fragments
 import abbesolo.com.realestatemanager.R
 import abbesolo.com.realestatemanager.fragments.adapters.RMAdapterListener
 import abbesolo.com.realestatemanager.fragments.adapters.RMListAdapter
-import abbesolo.com.realestatemanager.models.RMAndPhotos
-import abbesolo.com.realestatemanager.viewModel.RMViewModel
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.view.*
-
 import kotlinx.android.synthetic.main.fragment_r_m_list.view.*
 
 
@@ -32,7 +26,13 @@ class RMListFragment :  RMBaseFragment(), RMAdapterListener {
 
     private lateinit var mAdapter: RMListAdapter
 
+    companion object {
+        fun newInstance() = RMListFragment()
+    }
+
     // METHODS -------------------------------------------------------------------------------------
+
+
 
     // -- BaseFragment --
 
@@ -104,7 +104,7 @@ class RMListFragment :  RMBaseFragment(), RMAdapterListener {
             .getRealEstatesWithPhotosByUserId(userId = 1L)
             .observe(
                 this.viewLifecycleOwner,
-                Observer { this.mAdapter.updateData(it) }
+                 { this.mAdapter.updateData(it) }
             )
     }
 }

@@ -2,6 +2,7 @@ package abbesolo.com.realestatemanager.ui
 
 import abbesolo.com.realestatemanager.R
 import abbesolo.com.realestatemanager.fragments.*
+import abbesolo.com.realestatemanager.repositories.UserSingleton
 import abbesolo.com.realestatemanager.utils.RMMessageTools
 import android.content.Intent
 import android.os.Bundle
@@ -9,10 +10,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -38,6 +37,8 @@ class MainActivity : RMBaseActivity(), FragmentListener {
 
     companion object {
         const val BUNDLE_ITEM_ID = "BUNDLE_ITEM_ID"
+
+
     }
 
     // METHODS -------------------------------------------------------------------------------------
@@ -65,12 +66,28 @@ class MainActivity : RMBaseActivity(), FragmentListener {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         this.menuInflater.inflate(R.menu.toolbar_menu, menu)
         this.configureBehaviorOfToolBar()
+
+//         val currentUser = intent.getStringExtra("Username").toString()
+//
+//        val username = intent?.getStringExtra(ResgisterActivity.EXTRA_USERNAME)
+//        val email = intent?.getStringExtra(ResgisterActivity.EXTRA_EMAIL)
+//        val password = intent?.getStringExtra(ResgisterActivity.EXTRA_PASSWORD)
+//        val urlpicture = intent?.getStringExtra(ResgisterActivity.EXTRA_URLPICTURE)
+//        val id: Long? = intent?.getLongExtra(ResgisterActivity.EXTRA_ID, -1)
+
+
+//        val user = id?.let { RMUser(it, username, email, password, urlpicture) }
+//        println(user)
+
+        val myUser = UserSingleton.getUser()
+        println(myUser)
+
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Edit fragment (Need to pass data to start fragment)
-        item?.itemId.let {
+        item.itemId.let {
             if (it == R.id.toolbar_menu_edit) {
                 // By destination (Safe Args)
                 val bundle = RMUpdateFragmentArgs(this.mItemId).toBundle()
@@ -80,7 +97,7 @@ class MainActivity : RMBaseActivity(), FragmentListener {
             }
         }
 
-        return item!!.onNavDestinationSelected(this.mNavController) || super.onOptionsItemSelected(item)
+        return item.onNavDestinationSelected(this.mNavController) || super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {
@@ -101,7 +118,28 @@ class MainActivity : RMBaseActivity(), FragmentListener {
             .childFragmentManager
             .fragments[0]
             .onActivityResult(requestCode, resultCode, data)
+
+//        User
+
+//
+//        if (requestCode == ADD_USER_REQUEST && resultCode == RESULT_OK) {
+//            val username = data?.getStringExtra(ResgisterActivity.EXTRA_USERNAME)
+//           val email = data?.getStringExtra(ResgisterActivity.EXTRA_EMAIL)
+//           val password = data?.getStringExtra(ResgisterActivity.EXTRA_PASSWORD)
+//           val urlpicture = data?.getStringExtra(ResgisterActivity.EXTRA_URLPICTURE)
+//            val id: Long? = data?.getLongExtra(ResgisterActivity.EXTRA_ID, -1)
+//
+//
+//
+//          val user = id?.let { RMUser(it, username, email, password, urlpicture) }
+//           println(user)
+//
+//            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
+//        }
     }
+
 
     override fun onSaveInstanceState(outState: Bundle) {
         // Save item id for EditFragment
@@ -219,7 +257,7 @@ class MainActivity : RMBaseActivity(), FragmentListener {
             }
 
             R.id.navigation_detailsFragment -> {
-                addItem.isVisible = true
+                addItem.isVisible = false
                 editItem.isVisible = true
                 searchItem.isVisible = false
             }
@@ -233,7 +271,7 @@ class MainActivity : RMBaseActivity(), FragmentListener {
 
             R.id.navigation_creatorFragment,
             R.id.navigation_editFragment -> {
-                addItem.isVisible = true
+                addItem.isVisible = false
                 editItem.isVisible = false
                 searchItem.isVisible = false
             }
@@ -258,6 +296,7 @@ class MainActivity : RMBaseActivity(), FragmentListener {
             R.id.navigation_detailsFragment -> {
                 editItem.isVisible = true
                 searchItem.isVisible = true
+
             }
 
             R.id.navigation_locationFragment,

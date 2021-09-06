@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <item name="navigation_convertFragment" type="id">navigation_convertFragment</item>-->
+    <item name="navigation_convertFragment" type="id" />
+
+</resources>

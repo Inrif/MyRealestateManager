@@ -36,6 +36,7 @@ import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_edit.view.*
+import kotlinx.android.synthetic.main.fragment_r_m_details.view.*
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
@@ -80,6 +81,7 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
         this.configurePOIsRecyclerView()
         this.configureSupportMapFragment()
 
+
         // LiveData
         this.configureRealEstateLiveData()
         this.configurePOIsLiveData()
@@ -87,6 +89,7 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
         this.configurePhotoCreatorLiveData()
         this.configurePOIsSearch()
     }
+
 
     override fun actionAfterPermission(media: Media?) {
         when (media) {
@@ -142,7 +145,7 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
                     photoId = (v.tag as Photo).id,
                     urlPhoto = (v.tag as Photo).urlPicture,
                     description = (v.tag as Photo).description,
-                    realEstateId = (v.tag as Photo).id!!,
+                    realEstateId = (v.tag as Photo).id,
                     mode = RMPhotoDialog.PhotoDialogMode.UPDATE
                 )
                     .show(
@@ -208,7 +211,9 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
             this.mRootView.fragment_edit_surface,
             this.mRootView.fragment_edit_number_of_room,
             this.mRootView.fragment_edit_description,
-            this.mRootView.fragment_edit_effective_date
+            this.mRootView.fragment_edit_effective_date,
+
+
         )
 
         // Type: Populates the adapter
@@ -219,6 +224,8 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
                 this.resources.getStringArray(R.array.creator_types)
             )
         )
+
+
     }
 
     /**
@@ -352,7 +359,10 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
         this.mRootView.fragment_edit_fab.setOnClickListener {
             this.actionToUpdateRealEstate()
         }
+
     }
+
+
 
     // -- RecyclerView --
 
@@ -455,7 +465,7 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
             .getRealEstateWithPhotosById(realEstateId = this.mItemId)
             .observe(
                 this.viewLifecycleOwner,
-                androidx.lifecycle.Observer {
+                {
                     this.mPhotosOfCurrentRealEstate = it.photos
 
                     it.photos?.let { currentPhotos ->
@@ -474,7 +484,7 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
             .getRealEstateAndInterestPointById(realEstateId = this.mItemId)
             .observe(
                 this.viewLifecycleOwner,
-                androidx.lifecycle.Observer {
+                {
                     it.poi?.let { poiList ->
                         this.mViewModel.addCurrentPOIs(poiList)
                     }
@@ -490,7 +500,7 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
             .getPhotos()
             .observe(
                 this.viewLifecycleOwner,
-                androidx.lifecycle.Observer { this.mAllPhotosFromDatabase = it }
+                { this.mAllPhotosFromDatabase = it }
             )
     }
 
@@ -502,7 +512,7 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
             .getPhotoCreator()
             .observe(
                 this.viewLifecycleOwner,
-                androidx.lifecycle.Observer {
+                {
                     this.mAllPhotosFromCreator = it
                     this.mPhotoAdapter.updateData(it)
                 }
@@ -517,8 +527,8 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
             .getPOIsSearch()
             .observe(
                 this.viewLifecycleOwner,
-                androidx.lifecycle.Observer {
-                    // Sorts the list on its name from A to Z
+                {
+                    /* Sorts the list on its name from A to Z */
                     Collections.sort(it, POI.AZTitleComparator())
 
                     this.mPOIsAdapter.updateData(it)
@@ -530,7 +540,7 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
             .getPOIs()
             .observe(
                 this.viewLifecycleOwner,
-               androidx.lifecycle.Observer { /* Do nothing */ }
+                { /* Do nothing */ }
             )
     }
 
@@ -624,13 +634,26 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
                 }
 
                 // Enable
-                this.mRootView.fragment_edit_enable.isEnabled = realEstate.isEnable ?: false
+//                this.mRootView.fragment_edit_enable.isEnabled = realEstate.isEnable ?: false
+
+//                realEstate.isEnable.let { if (false){ this.mRootView.fragment_edit_enable.isClickable}
+//                else{ this.mRootView.fragment_edit_enable.isChecked = false}
+//                }
+
+                // To check a switch
+                realEstate.isEnable = this.mRootView.fragment_edit_enable.isChecked
+
+
+
+
+//                this.mRootView.fragment_edit_enable.isEnabled = realEstate.isEnable ?: true
+//                this.mRootView.sold.visibility
 
                 // Effective date
                 this.mRootView.fragment_edit_effective_date.editText?.text?.let { effectiveDate ->
                     effectiveDate.clear()
 
-                    val date = realEstate.effectiveDate?.run {
+                    val date = realEstate.saleDate?.run {
                         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                         dateFormat.format(this)
                     } ?: "00/00/0000"
@@ -693,6 +716,7 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
      * @param resultCode    an [Int] that contains the result code
      * @param data          an [Intent] that contains the data
      */
+
     private fun handleAddress(resultCode: Int, data: Intent?) {
         when (resultCode) {
             Activity.RESULT_OK -> {
@@ -894,11 +918,11 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
     // -- Real Estate --
 
     /**
-     * Action to update a [RealEstate]
+     * Action to update a [RM]
      */
     private fun actionToUpdateRealEstate() {
         // Check if no update
-        // todo: 18/04/2020 - No update
+
 
         // Errors
         val isCanceled = this.configureErrorOfFields(
@@ -933,7 +957,7 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
                 .setTitle(R.string.navigation_edit_name)
                 .setMessage(R.string.message_edit_user_choice)
                 .setPositiveButton(R.string.yes) { _, _ ->
-                    // todo - 06/04/2020 - Next feature: Add user's authentication instead of 1L
+
                     val realEstate = RM(
                         mId = this.mItemId,
                         type = this.mRootView.fragment_edit_type.editText?.text?.toString(),
@@ -942,8 +966,10 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
                         roomNumber = this.mRootView.fragment_edit_number_of_room.editText?.text?.toString()?.toInt(),
                         description = this.mRootView.fragment_edit_description.editText?.text?.toString(),
                         isEnable = this.mRootView.fragment_edit_enable.isChecked,
-                        effectiveDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(this.mRootView.fragment_edit_effective_date.editText?.text?.toString()),
-                        saleDate = null,
+                        effectiveDate = null,
+//                        effectiveDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(this.mRootView.fragment_edit_effective_date.editText?.text?.toString()),
+                        saleDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(this.mRootView.fragment_edit_effective_date.editText?.text?.toString()),
+//                        saleDate = null,
                         rmAgentId = 1L,
                         address = Address(
                             street = this.mRootView.fragment_edit_address.editText?.text?.toString(),
@@ -961,10 +987,17 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
                         this.mAllPhotosFromCreator,
                         this.mViewModel.getJustNewSelectedPOIs()
                     )
+
+                    //call RMListFragment
+                        requireActivity().supportFragmentManager.beginTransaction()
+                            .replace(R.id.fragment_edit, RMListFragment.newInstance())
+                            .commit()
+
                 }
                 .setNegativeButton(R.string.no) { _, _ -> /* Do nothing */ }
                 .create()
                 .show()
+
         }
     }
 }

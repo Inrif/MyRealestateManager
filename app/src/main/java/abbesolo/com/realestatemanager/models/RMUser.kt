@@ -25,5 +25,8 @@ data class RMUser (
     var email: String? = null,
 
     @ColumnInfo(name = "url_picture")
-    var urlPicture: String? = null
+    var urlPicture: String? = null,
+
+    @ColumnInfo(name = "password")
+    var password: String? = null
 )

@@ -96,8 +96,8 @@ abstract class Database: RoomDatabase (){
         // -- User --
 
         /**
-         * Populates the [Database] with an [User]
-         * @param RMUserDAO a DAO for the [User] table
+         * Populates the [Database] with an [RMUser]
+         * @param RMUserDAO a DAO for the [RMUser] table
          */
         private suspend fun populateDatabase(RMUserDAO: RMUserDAO) {
             // Add a User to the database

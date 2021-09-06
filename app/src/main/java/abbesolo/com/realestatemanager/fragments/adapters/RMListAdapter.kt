@@ -109,7 +109,17 @@ class RMListAdapter( private val mCallback: RMAdapterListener? = null
                     ContextCompat.getColor(holder.itemView.context, R.color.colorAccent)
             )
         }
-    }
+
+        //verify if realestate is sold
+        if (realEstate.rm?.isEnable == true){
+            holder.itemView.sold.visibility = View.VISIBLE
+        }else{ holder.itemView.sold.visibility = View.GONE
+        }
+
+
+
+
+        }
 
     /**
      * Configures the background of item

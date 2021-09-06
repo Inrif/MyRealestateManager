@@ -2,6 +2,7 @@ package abbesolo.com.realestatemanager.dialogs
 
 import abbesolo.com.realestatemanager.R
 import abbesolo.com.realestatemanager.utils.RMSaveTools
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
@@ -30,6 +31,7 @@ class RMSettingsDialog : DialogFragment() {
 
     // -- DialogFragment --
 
+    @SuppressLint("InflateParams")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Creates the View thanks to the inflater
         this.mRootView = this.requireActivity().layoutInflater

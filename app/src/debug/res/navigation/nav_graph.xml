@@ -89,4 +89,11 @@
         android:label="@string/title_settings_dialog_fragment"
         tools:layout="@layout/dialog_fragment_settings" />
 
+    <!-- dialog: convertDialogFragment -->
+    <dialog
+        android:id="@+id/navigation_convertFragment"
+        android:name="abbesolo.com.realestatemanager.dialogs.RMConvertDialog"
+        android:label="@string/title_convert_dialog_fragment"
+        tools:layout="@layout/dialog_fragment_settings" />
+
 </navigation>

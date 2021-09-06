@@ -5,17 +5,10 @@ import abbesolo.com.realestatemanager.models.LocationData
 import abbesolo.com.realestatemanager.models.RMAndPhotos
 import android.annotation.SuppressLint
 import android.location.Location
-import androidx.fragment.app.Fragment
-
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -201,7 +194,7 @@ class RMMapFragment : RMBaseFragment(),
             .getRealEstatesWithPhotosByUserId(userId = 1L)
             .observe(
                 this.viewLifecycleOwner,
-                Observer {
+                 {
                     this.mRealEstatesWithPhotos = it
                     this.addPointsOfInterest(it)
                 }
@@ -216,7 +209,7 @@ class RMMapFragment : RMBaseFragment(),
             .getLocation(this.requireContext())
             .observe(
                 this@RMMapFragment.viewLifecycleOwner,
-                Observer { this@RMMapFragment.onChangedLocationData(it) }
+                 { this@RMMapFragment.onChangedLocationData(it) }
             )
     }
 
@@ -315,12 +308,12 @@ class RMMapFragment : RMBaseFragment(),
 
         this.mGoogleMap?.let {
             // GESTURES
-            it.uiSettings?.isZoomGesturesEnabled = true
-            it.uiSettings?.isRotateGesturesEnabled = true
+            it.uiSettings.isZoomGesturesEnabled = true
+            it.uiSettings.isRotateGesturesEnabled = true
 
             // SCROLL
-            it.uiSettings?.isScrollGesturesEnabled = true
-            it.uiSettings?.isScrollGesturesEnabledDuringRotateOrZoom = true
+            it.uiSettings.isScrollGesturesEnabled = true
+            it.uiSettings.isScrollGesturesEnabledDuringRotateOrZoom = true
 
             // MIN ZOOM LEVELS
             it.setMinZoomPreference(if (it.minZoomLevel > 10.0F) it.minZoomLevel else 10.0F)
@@ -330,10 +323,10 @@ class RMMapFragment : RMBaseFragment(),
 
             // MY LOCATION
             it.isMyLocationEnabled = true
-            it.uiSettings?.isMyLocationButtonEnabled = false
+            it.uiSettings.isMyLocationButtonEnabled = false
 
             // TOOLBAR
-            it.uiSettings?.isMapToolbarEnabled = false
+            it.uiSettings.isMapToolbarEnabled = false
         }
     }
 

@@ -24,4 +24,9 @@ interface RMUserRepository { // METHODS ----------------------------------------
     // -- Delete --
 
     suspend fun deleteUser(user: RMUser): Int
+
+//    suspend fun getUserByEmail(userEmail: String): LiveData<RMUser>?
+
+
+
 }

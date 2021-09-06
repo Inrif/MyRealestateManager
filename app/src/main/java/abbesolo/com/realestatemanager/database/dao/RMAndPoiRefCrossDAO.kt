@@ -1,6 +1,6 @@
 package abbesolo.com.realestatemanager.database.dao
 
-import abbesolo.com.realestatemanager.models.POI
+
 import abbesolo.com.realestatemanager.models.RMAndPoiRefCross
 import androidx.room.Dao
 import androidx.room.Insert

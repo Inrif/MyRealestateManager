@@ -42,10 +42,7 @@ class RealEstateContentProvider : ContentProvider() {
 
     override fun onCreate(): Boolean = true
 
-    override fun insert(
-        uri: Uri,
-        values: ContentValues?
-    ): Uri? = runBlocking<Uri> {
+    override fun insert(uri: Uri, values: ContentValues?) = runBlocking<Uri> {
         when (this@RealEstateContentProvider.mUriMatch.match(uri)) {
             Table.USER.ordinal -> {
                 this@RealEstateContentProvider.context?.let {
@@ -76,7 +73,7 @@ class RealEstateContentProvider : ContentProvider() {
         selection: String?,
         selectionArgs: Array<String>?,
         sortOrder: String?
-    ): Cursor? {
+    ): Cursor {
         when (this.mUriMatch.match(uri)) {
             Table.USER.ordinal -> {
                 this.context?.let {
@@ -176,9 +173,9 @@ class RealEstateContentProvider : ContentProvider() {
     // -- User --
 
     /**
-     * Gets [User] from [ContentValues]
+     * Gets [RMUser] from [ContentValues]
      * @param values a [ContentValues]
-     * @return a [User]
+     * @return a [RMUser]
      */
     private fun getUserFromContentValues(values: ContentValues?): RMUser {
         return RMUser().apply {

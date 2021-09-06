@@ -7,7 +7,7 @@ import androidx.room.Relation
 /**
  * Created by Romuald Hounsa on 01/06/2020.
  * Copyright (c) 2020 abbesolo.com.realestatemanager. All rights reserved.
- *  * Many-to-many relationships: many [RealEstate] and many [poi]
+ *  * Many-to-many relationships: many [RM] and many [poi]
  */
 data class RMAndPoi(
     @Embedded

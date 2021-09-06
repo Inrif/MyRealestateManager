@@ -40,13 +40,14 @@ import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_creator.view.*
+import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.fragment_r_m_creator.view.*
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-//@Suppress("UNREACHABLE_CODE")
+
 class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, OnMapReadyCallback {
 
     // FIELDS --------------------------------------------------------------------------------------
@@ -73,8 +74,8 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
         const val BUNDLE_COUNTRY = "BUNDLE_COUNTRY"
         const val BUNDLE_LATITUDE = "BUNDLE_LATITUDE"
         const val BUNDLE_LONGITUDE = "BUNDLE_LONGITUDE"
-        const val BUNDLE_ENABLE = "BUNDLE_ENABLE"
         const val BUNDLE_EFFECTIVE_DATE = "BUNDLE_EFFECTIVE_DATE"
+
     }
 
     // METHODS -------------------------------------------------------------------------------------
@@ -138,7 +139,7 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
         outState.putString(BUNDLE_COUNTRY, this.mRootView.fragment_creator_country.editText?.text?.toString())
         outState.putDouble(BUNDLE_LATITUDE, this.mGoogleMap?.projection?.visibleRegion?.latLngBounds?.center?.latitude ?: 0.0)
         outState.putDouble(BUNDLE_LONGITUDE, this.mGoogleMap?.projection?.visibleRegion?.latLngBounds?.center?.longitude ?: 0.0)
-        outState.putBoolean(BUNDLE_ENABLE, this.mRootView.fragment_creator_enable.isChecked)
+//        outState.putBoolean(BUNDLE_ENABLE, this.mRootView.fragment_creator_enable.isChecked)
         outState.putString(BUNDLE_EFFECTIVE_DATE, this.mRootView.fragment_creator_effective_date.editText?.text?.toString())
 
         // Always call the superclass so it can save the view hierarchy state
@@ -200,8 +201,8 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
             val longitude = bundle.getDouble(BUNDLE_LONGITUDE, 0.0)
             this.showPointOfInterest(LatLng(latitude, longitude))
             // ENABLE
-            this.mRootView.fragment_creator_enable.isChecked =
-                bundle.getBoolean(BUNDLE_ENABLE, true)
+//            this.mRootView.fragment_creator_enable.isChecked =
+//                bundle.getBoolean(BUNDLE_ENABLE, true)
             // EFFECTIVE DATE
             this.mRootView.fragment_creator_effective_date.editText?.text?.let {
                 it.clear()
@@ -302,7 +303,8 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
             this.mRootView.fragment_creator_number_of_room,
             this.mRootView.fragment_creator_description,
             this.mRootView.fragment_creator_effective_date,
-            this.mRootView.fragment_creator_distance_poi
+            this.mRootView.fragment_creator_distance_poi,
+
         )
 
         // Hides field for address
@@ -573,7 +575,7 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
             .getPhotos()
             .observe(
                 this.viewLifecycleOwner,
-                Observer { this.mAllPhotosFromDatabase = it }
+               { this.mAllPhotosFromDatabase = it }
             )
     }
 
@@ -585,7 +587,7 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
             .getPhotoCreator()
             .observe(
                 this.viewLifecycleOwner,
-                Observer {
+                 {
                     this.mAllPhotosFromCreator = it
                     this.mPhotoAdapter.updateData(it)
                 }
@@ -600,7 +602,7 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
             .getPOIsSearch()
             .observe(
                 this.viewLifecycleOwner,
-                Observer {
+                 {
                     if (it.isEmpty()) {
                         this.mCallback?.showMessage(
                             this.getString(R.string.no_pois_search)
@@ -619,7 +621,7 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
             .getPOIs()
             .observe(
                 this.viewLifecycleOwner,
-                Observer { /* Do nothing */ }
+                 { /* Do nothing */ }
             )
     }
 
@@ -905,7 +907,7 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
     // -- Real Estate --
 
     /**
-     * Action to add a [RealEstate]
+     * Action to add a [RM]
      */
     private fun actionToAddRealEstate() {
         // Errors
@@ -915,7 +917,8 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
             this.mRootView.fragment_creator_surface,
             this.mRootView.fragment_creator_number_of_room,
             this.mRootView.fragment_creator_description,
-            this.mRootView.fragment_creator_effective_date
+            this.mRootView.fragment_creator_effective_date,
+
         )
 
         if (isCanceled) {
@@ -948,7 +951,8 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
                         surface = this.mRootView.fragment_creator_surface.editText?.text?.toString()?.toDouble(),
                         roomNumber = this.mRootView.fragment_creator_number_of_room.editText?.text?.toString()?.toInt(),
                         description = this.mRootView.fragment_creator_description.editText?.text?.toString(),
-                        isEnable = this.mRootView.fragment_creator_enable.isChecked,
+//                        isEnable = this.mRootView.fragment_creator_enable.isChecked,
+                        isEnable = null,
                         effectiveDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(this.mRootView.fragment_creator_effective_date.editText?.text?.toString()),
                         saleDate = null,
                         rmAgentId = 1L,
@@ -968,6 +972,10 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
                         this.mAllPhotosFromCreator,
                         this.mViewModel.getSelectedPOIs()
                     )
+                   //call RMListFragment
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_creator, RMListFragment.newInstance())
+                        .commit()
                 }
                 .setNegativeButton(R.string.no) { _, _ -> /* Do nothing */ }
                 .create()

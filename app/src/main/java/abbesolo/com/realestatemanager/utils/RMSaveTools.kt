@@ -3,6 +3,7 @@ package abbesolo.com.realestatemanager.utils
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import kotlin.math.roundToInt
 
 /**
  * Created by HOUNSA Romuald on 19/06/2020.
@@ -47,4 +48,12 @@ object RMSaveTools {
         context: Context,
         key: String
     ): Boolean = getSharedPreferences(context).getBoolean(key, true)
+
+
+
+
+
+    fun convertDollarToEuro(dollars: Int): Int = (dollars.toFloat() * 0.812F).roundToInt()
+
+    fun convertEuroToDollar(euros: Int): Int = (euros.toFloat() / 0.812F).roundToInt()
 }

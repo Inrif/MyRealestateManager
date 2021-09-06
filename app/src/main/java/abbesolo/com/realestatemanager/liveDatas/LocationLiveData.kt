@@ -1,6 +1,6 @@
 package abbesolo.com.realestatemanager.liveDatas
 
-import abbesolo.com.realestatemanager.models.Location
+
 import abbesolo.com.realestatemanager.models.LocationData
 import android.Manifest
 import android.content.Context

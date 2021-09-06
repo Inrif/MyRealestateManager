@@ -6,6 +6,7 @@ import abbesolo.com.realestatemanager.fragments.adapters.RMPhotoAdapter
 import abbesolo.com.realestatemanager.fragments.adapters.RMPoiAdapter
 import abbesolo.com.realestatemanager.models.POI
 import abbesolo.com.realestatemanager.models.RMAndPhotos
+import abbesolo.com.realestatemanager.repositories.UserSingleton
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
@@ -51,10 +52,16 @@ class RMDetailFragment :RMBaseFragment(), RMAdapterListener, OnMapReadyCallback 
         this.configurePhotoRecyclerView()
         this.configurePOIsRecyclerView()
         this.configureSupportMapFragment()
+        this.configureUser()
 
         // LiveData
         this.configureRealEstateLiveData()
         this.configurePOIsLiveData()
+    }
+
+    private fun configureUser() {
+
+        this.mRootView.fragment_detail_user_name.text = UserSingleton.getUser()?.username
     }
 
     // -- AdapterListener interface --
@@ -184,7 +191,9 @@ class RMDetailFragment :RMBaseFragment(), RMAdapterListener, OnMapReadyCallback 
         childFragment?.getMapAsync(this@RMDetailFragment)
 
         // To keep the instance after configuration change (rotation)
-        childFragment?.retainInstance = true
+        if (childFragment != null) {
+            childFragment.retainInstance = true
+        }
     }
 
     // -- LiveData --
@@ -244,7 +253,18 @@ class RMDetailFragment :RMBaseFragment(), RMAdapterListener, OnMapReadyCallback 
                     R.string.details_characteristics,
                     realEstate.surface ?: 0.0,
                     realEstate.roomNumber ?: 0
+
                 )
+
+                // Sold
+
+                //verify if realEstate is sold
+                if (realEstate.isEnable == true){
+                    this.mRootView.sold.visibility = View.VISIBLE
+                }else{ this.mRootView.sold.visibility = View.GONE
+                }
+
+
 
                 // Address
                 realEstate.address?.let { address ->

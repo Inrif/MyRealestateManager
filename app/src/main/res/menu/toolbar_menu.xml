@@ -21,7 +21,7 @@
     <!-- Search -->
     <item
         android:id="@id/navigation_locationFragment"
-        android:icon="@drawable/ic_search"
+        android:icon="@drawable/ic_place"
         android:title="@string/search_real_estate_toolbar"
         app:showAsAction="ifRoom"/>
 

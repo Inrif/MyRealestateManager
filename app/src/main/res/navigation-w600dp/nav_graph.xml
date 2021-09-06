@@ -11,16 +11,16 @@
     <!-- fragment: ListFragment -->
     <fragment
         android:id="@+id/navigation_listFragment"
-        android:name="com.mancel.yann.realestatemanager.views.fragments.ListFragment"
+        android:name="abbesolo.com.realestatemanager.fragments.RMListFragment"
         android:label="@string/navigation_list_name"
         tools:layout="@layout/fragment_list"/>
 
     <!-- fragment: DetailsFragment -->
     <fragment
         android:id="@+id/navigation_detailsFragment"
-        android:name="com.mancel.yann.realestatemanager.views.fragments.DetailsFragment"
+        android:name="abbesolo.com.realestatemanager.fragments.RMDetailFragment"
         android:label="@string/navigation_details_name"
-        tools:layout="@layout/fragment_details">
+        tools:layout="@layout/fragment_r_m_details">
 
         <argument
             android:name="itemId"
@@ -32,7 +32,7 @@
     <!-- fragment: LocationFragment -->
     <fragment
         android:id="@+id/navigation_locationFragment"
-        android:name="com.mancel.yann.realestatemanager.views.fragments.LocationFragment"
+        android:name="abbesolo.com.realestatemanager.fragments.RMMapFragment"
         android:label="@string/navigation_location_name"
         tools:layout="@layout/fragment_location">
 
@@ -45,14 +45,14 @@
     <!-- fragment: CreatorFragment -->
     <fragment
         android:id="@+id/navigation_creatorFragment"
-        android:name="com.mancel.yann.realestatemanager.views.fragments.CreatorFragment"
+        android:name="abbesolo.com.realestatemanager.fragments.RMCreatorFragment"
         android:label="@string/navigation_creator_name"
         tools:layout="@layout/fragment_creator"/>
 
     <!-- fragment: EditFragment -->
     <fragment
         android:id="@+id/navigation_editFragment"
-        android:name="com.mancel.yann.realestatemanager.views.fragments.EditFragment"
+        android:name="abbesolo.com.realestatemanager.fragments.RMUpdateFragment"
         android:label="@string/navigation_edit_name"
         tools:layout="@layout/fragment_edit">
 
@@ -66,7 +66,7 @@
     <!-- SearchFragment: EditFragment -->
     <fragment
         android:id="@+id/navigation_searchFragment"
-        android:name="com.mancel.yann.realestatemanager.views.fragments.SearchFragment"
+        android:name="abbesolo.com.realestatemanager.fragments.RMSearchFragment"
         android:label="@string/navigation_search_name"
         tools:layout="@layout/fragment_search" >
 
@@ -79,8 +79,15 @@
     <!-- dialog: settingsDialogFragment -->
     <dialog
         android:id="@+id/navigation_settingsDialogFragment"
-        android:name="com.mancel.yann.realestatemanager.views.dialogs.SettingsDialogFragment"
+        android:name="abbesolo.com.realestatemanager.dialogs.RMSettingsDialog"
         android:label="@string/title_settings_dialog_fragment"
+        tools:layout="@layout/dialog_fragment_settings" />
+
+    <!-- dialog: convertDialogFragment -->
+    <dialog
+        android:id="@+id/navigation_convertFragment"
+        android:name="abbesolo.com.realestatemanager.dialogs.RMConvertDialog"
+        android:label="@string/title_convert_dialog_fragment"
         tools:layout="@layout/dialog_fragment_settings" />
 
 </navigation>

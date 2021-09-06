@@ -76,6 +76,17 @@
             style="@style/TextViewStyle3"
             tools:text="17,254,635$"/>
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:visibility="gone"
+            android:id="@+id/sold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/sold"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

@@ -7,7 +7,7 @@ import androidx.room.*
  * Copyright (c) 2020 abbesolo.com.realestatemanager. All rights reserved.
  * It is the point of interest at proximity (school, park, business...).
  *
- * Many-to-many relationships: many [RealEstate] and many [POI]
+ * Many-to-many relationships: many [RM] and many [POI]
  */
 
 @Entity(tableName = "point_of_interest",
