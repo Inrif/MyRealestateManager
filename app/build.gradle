@@ -114,7 +114,7 @@ dependencies {
 // Koin AndroidX Fragment features
     implementation "io.insert-koin:koin-androidx-fragment:2.2.3"
 
-    implementation 'com.android.volley:volley:1.2.0'
+    implementation 'com.android.volley:volley:1.2.1'
 
     // Google Maps
     implementation "com.google.android.gms:play-services-location:18.0.0"
@@ -131,7 +131,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 
     // Mockito
-    testImplementation "org.mockito:mockito-core:4.7.1"
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation("org.mockito:mockito-core:3.2.0")
+
 
     // Mockito-Kotlin
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"

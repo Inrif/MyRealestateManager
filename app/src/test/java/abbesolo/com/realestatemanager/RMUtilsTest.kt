@@ -1,17 +1,19 @@
 package abbesolo.com.realestatemanager
 
 
+
+import abbesolo.com.realestatemanager.utils.convertDollarToEuro
+import abbesolo.com.realestatemanager.utils.convertEuroToDollar
+import abbesolo.com.realestatemanager.utils.getTodayDateDDMMYYYY
+import abbesolo.com.realestatemanager.utils.getTodayDateYYYYMMDD
+import abbesolo.com.realestatemanager.utils.isInternetAvailable
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
-import convertDollarToEuro
-import convertEuroToDollar
-import getTodayDateDDMMYYYY
-import getTodayDateYYYYMMDD
-import isInternetAvailable
 import org.junit.Test
+
 
 import org.junit.Assert.*
 import java.util.*

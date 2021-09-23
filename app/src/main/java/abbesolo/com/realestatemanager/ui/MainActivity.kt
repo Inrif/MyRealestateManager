@@ -12,6 +12,7 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -59,6 +60,7 @@ class MainActivity : RMBaseActivity(), FragmentListener {
 
         // Navigation
         this.configureFragmentNavigation()
+
     }
 
     // -- Activity --
@@ -67,17 +69,6 @@ class MainActivity : RMBaseActivity(), FragmentListener {
         this.menuInflater.inflate(R.menu.toolbar_menu, menu)
         this.configureBehaviorOfToolBar()
 
-//         val currentUser = intent.getStringExtra("Username").toString()
-//
-//        val username = intent?.getStringExtra(ResgisterActivity.EXTRA_USERNAME)
-//        val email = intent?.getStringExtra(ResgisterActivity.EXTRA_EMAIL)
-//        val password = intent?.getStringExtra(ResgisterActivity.EXTRA_PASSWORD)
-//        val urlpicture = intent?.getStringExtra(ResgisterActivity.EXTRA_URLPICTURE)
-//        val id: Long? = intent?.getLongExtra(ResgisterActivity.EXTRA_ID, -1)
-
-
-//        val user = id?.let { RMUser(it, username, email, password, urlpicture) }
-//        println(user)
 
         val myUser = UserSingleton.getUser()
         println(myUser)
@@ -119,25 +110,6 @@ class MainActivity : RMBaseActivity(), FragmentListener {
             .fragments[0]
             .onActivityResult(requestCode, resultCode, data)
 
-//        User
-
-//
-//        if (requestCode == ADD_USER_REQUEST && resultCode == RESULT_OK) {
-//            val username = data?.getStringExtra(ResgisterActivity.EXTRA_USERNAME)
-//           val email = data?.getStringExtra(ResgisterActivity.EXTRA_EMAIL)
-//           val password = data?.getStringExtra(ResgisterActivity.EXTRA_PASSWORD)
-//           val urlpicture = data?.getStringExtra(ResgisterActivity.EXTRA_URLPICTURE)
-//            val id: Long? = data?.getLongExtra(ResgisterActivity.EXTRA_ID, -1)
-//
-//
-//
-//          val user = id?.let { RMUser(it, username, email, password, urlpicture) }
-//           println(user)
-//
-//            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
-//        } else {
-//            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
-//        }
     }
 
 
@@ -158,6 +130,7 @@ class MainActivity : RMBaseActivity(), FragmentListener {
             this.mItemId = it.getLong(BUNDLE_ITEM_ID, 0L)
         }
     }
+
 
     // -- FragmentListener interface --
 
@@ -295,7 +268,7 @@ class MainActivity : RMBaseActivity(), FragmentListener {
         when (destination.id) {
             R.id.navigation_detailsFragment -> {
                 editItem.isVisible = true
-                searchItem.isVisible = true
+                searchItem.isVisible = false
 
             }
 

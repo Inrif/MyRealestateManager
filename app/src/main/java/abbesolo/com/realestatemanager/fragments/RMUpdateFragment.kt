@@ -9,6 +9,7 @@ import abbesolo.com.realestatemanager.fragments.adapters.RMAdapterListener
 import abbesolo.com.realestatemanager.fragments.adapters.RMPhotoAdapter
 import abbesolo.com.realestatemanager.fragments.adapters.RMPoiAdapter
 import abbesolo.com.realestatemanager.models.*
+import abbesolo.com.realestatemanager.ui.MainActivity
 import android.app.Activity
 import android.content.Intent
 import android.provider.MediaStore
@@ -17,6 +18,7 @@ import android.text.TextWatcher
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,6 +37,7 @@ import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_edit.view.*
 import kotlinx.android.synthetic.main.fragment_r_m_details.view.*
 import timber.log.Timber
@@ -61,6 +64,9 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
     companion object {
         const val REQUEST_CODE_PHOTO = 100
         const val REQUEST_CODE_AUTOCOMPLETE = 200
+
+
+
     }
 
     // METHODS -------------------------------------------------------------------------------------
@@ -98,6 +104,7 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
             null -> { /* Do nothing */ }
         }
     }
+
 
     // -- Fragment --
 
@@ -989,9 +996,11 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
                     )
 
                     //call RMListFragment
-                        requireActivity().supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragment_edit, RMListFragment.newInstance())
-                            .commit()
+                    val fgm =  requireActivity().supportFragmentManager.beginTransaction()
+                    fgm.replace(R.id.activity_main_NavHostFragment, RMListFragment.newInstance())
+                    fgm.commit()
+
+
 
                 }
                 .setNegativeButton(R.string.no) { _, _ -> /* Do nothing */ }
@@ -999,5 +1008,8 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
                 .show()
 
         }
+
     }
+
+
 }

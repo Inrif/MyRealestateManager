@@ -26,11 +26,4 @@ data class Address (
     @ColumnInfo(name = "longitude")
     val longitude: Double? = null
 
-//    val street: String? = null,
-//    val city: String? = null,
-//@ColumnInfo(name = "post_code")
-//    val postCode: Int? = null,
-//    val country: String? = null,
-//    val latitude: Double? = null,
-//    val longitude: Double? = null
 )

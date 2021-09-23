@@ -944,7 +944,7 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
                 .setTitle(R.string.navigation_creator_name)
                 .setMessage(R.string.message_creator_user_choice)
                 .setPositiveButton(R.string.yes) { _, _ ->
-                    // todo - 06/04/2020 - Next feature: Add user's authentication instead of 1L
+
                     val realEstate = RM(
                         type = this.mRootView.fragment_creator_type.editText?.text?.toString(),
                         price = this.mRootView.fragment_creator_price.editText?.text?.toString()?.toDouble(),
@@ -974,13 +974,20 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
                     )
                    //call RMListFragment
                     requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_creator, RMListFragment.newInstance())
+                        .replace(R.id.activity_main_NavHostFragment, RMListFragment.newInstance())
                         .commit()
+
+
                 }
                 .setNegativeButton(R.string.no) { _, _ -> /* Do nothing */ }
                 .create()
                 .show()
+
         }
+
+
+
+
     }
 
 }

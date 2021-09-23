@@ -1,7 +1,8 @@
 package abbesolo.com.realestatemanager.dialogs
 
 import abbesolo.com.realestatemanager.R
-import abbesolo.com.realestatemanager.utils.RMSaveTools
+import abbesolo.com.realestatemanager.utils.RMSaveTools.convertDollarToEuro
+import abbesolo.com.realestatemanager.utils.RMSaveTools.convertEuroToDollar
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
@@ -120,7 +121,7 @@ class RMConvertDialog : DialogFragment(){
         val  myNumber : Int = str.toInt()
         println(myNumber)
 
-        val convertDollarToEuro = RMSaveTools.convertDollarToEuro(myNumber)
+        val convertDollarToEuro = convertDollarToEuro(myNumber)
         mResult.text = convertDollarToEuro.toString()
 
 
@@ -139,10 +140,10 @@ class RMConvertDialog : DialogFragment(){
 
             val s = this.mNumber.editText?.text.toString()
             val myNumber: Int = s.toInt()
-        val convertDollarToEuro = RMSaveTools.convertDollarToEuro(myNumber)
+        val convertDollarToEuro = convertDollarToEuro(myNumber)
         mResult.text = convertDollarToEuro.toString()
 
-        val convertEuroToDollar = RMSaveTools.convertEuroToDollar(convertDollarToEuro)
+        val convertEuroToDollar = convertEuroToDollar(convertDollarToEuro)
         mResult.text = convertEuroToDollar.toString()
 
 

@@ -19,6 +19,8 @@ import androidx.core.app.NotificationManagerCompat
  */
 object RMNotification {
 
+    //https://developer.android.com/training/notify-user/build-notification
+
     // FIELDS --------------------------------------------------------------------------------------
 
     private const val NOTIFICATION_ID = 4000

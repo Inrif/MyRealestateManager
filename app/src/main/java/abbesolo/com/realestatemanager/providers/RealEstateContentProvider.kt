@@ -15,6 +15,8 @@ import java.lang.IllegalArgumentException
 
 class RealEstateContentProvider : ContentProvider() {
 
+    //https://developer.android.com/guide/topics/providers/content-provider-basics
+
     // ENUMS ---------------------------------------------------------------------------------------
 
     enum class Table(val mName: String) {
