@@ -972,10 +972,7 @@ class RMCreatorFragment : RMBaseFragment(), RMAdapterListener, DialogListener, O
                         this.mAllPhotosFromCreator,
                         this.mViewModel.getSelectedPOIs()
                     )
-                   //call RMListFragment
-                    requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.activity_main_NavHostFragment, RMListFragment.newInstance())
-                        .commit()
+
 
 
                 }

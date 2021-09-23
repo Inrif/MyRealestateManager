@@ -995,10 +995,7 @@ class RMUpdateFragment : RMBaseFragment(), RMAdapterListener, DialogListener, On
                         this.mViewModel.getJustNewSelectedPOIs()
                     )
 
-                    //call RMListFragment
-                    val fgm =  requireActivity().supportFragmentManager.beginTransaction()
-                    fgm.replace(R.id.activity_main_NavHostFragment, RMListFragment.newInstance())
-                    fgm.commit()
+
 
 
 
