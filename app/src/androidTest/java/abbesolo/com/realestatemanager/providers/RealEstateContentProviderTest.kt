@@ -12,6 +12,7 @@ import org.hamcrest.CoreMatchers.notNullValue
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.*
 
 /**
  * Created by HOUNSA Romuald on 02/08/2021.
@@ -27,132 +28,137 @@ class RealEstateContentProviderTest {
                                                       .contentResolver
 
     private val mContentValues = ContentValues().apply {
-        put("id_user", 0L)
-        put("username", "_username_")
-        put("email", "_email_")
-        put("url_picture", "_url_picture_")
+        put("id_real_estate", 0L)
+        put("type", "House")
+        put("price_dollar", "1000")
+        put("surface_m2", "400")
+        put("number_of_room", "5")
+        put("description", "description")
+        put("isEnable", "isEnable")
+        put("effective_date", "effective_date")
+        put("sale_date", "sale_date")
+        put("estate_agent_id", "2")
+
     }
 
     companion object {
-        const val USER_ID = 1L
+        const val RM_ID = 1L
     }
 
     // METHODS -------------------------------------------------------------------------------------
 
     @Test
     fun query_shouldBeSuccess() {
-        // BEFORE: Retrieve the User (impossible)
+        // BEFORE: Retrieve the RM
         this.mContentResolver.query(
             ContentUris.withAppendedId(
-                Uri.parse(RealEstateContentProvider.TABLE_USER),
-                USER_ID
+                Uri.parse(RealEstateContentProvider.TABLE_RM),
+                RM_ID
             ),
             null,
             null,
             null,
             null
         )?.use {
-            // TEST: No user
+            // TEST: No rm
             assertThat(it, notNullValue())
 
-            // The database is pre populated with at least on User
-            //assertEquals(0, it.count)
         }
     }
 
+
     @Test
-    fun all_methods_shouldBeSuccess() {
-        var rows = 0
+    fun insert_shouldBeSuccess(){
+    val rmUri = this.mContentResolver.insert(
+        Uri.parse(RealEstateContentProvider.TABLE_RM),
+        this.mContentValues
+    )
+    assertNotNull(rmUri)
+        val id = ContentUris.parseId(rmUri!!)
+        assertTrue(id > 0)
+    }
 
-        // BEFORE: Retrieve all users
-        this.mContentResolver.query(
-            Uri.parse(RealEstateContentProvider.TABLE_USER),
-            null,
-            null,
-            null,
-            null
-        )?.use {
-            // TEST: All users
-            assertThat(it, notNullValue())
-            rows = it.count
-        }
 
-        // THEN: Add user
-        val userUri = this.mContentResolver.insert(
-            Uri.parse(RealEstateContentProvider.TABLE_USER),
+    @Test
+    fun update_shouldBeSuccess(){
+
+        //insert
+
+        val rmUri = this.mContentResolver.insert(
+            Uri.parse(RealEstateContentProvider.TABLE_RM),
             this.mContentValues
         )
+        val id = ContentUris.parseId(rmUri!!)
+        assertTrue(id > 0)
+        assertNotNull(rmUri)
+        //then update
 
-        // THEN: Retrieve the User
-        this.mContentResolver.query(
-            userUri!!,
-            null,
-            null,
-            null,
-            null
-        )?.use {
-            // TEST: Only one user
-            assertThat(it, notNullValue())
-            assertEquals(1, it.count)
-            assertTrue(it.moveToFirst())
-            assertEquals(
-                this.mContentValues.getAsString("username"),
-                it.getString(
-                    it.getColumnIndexOrThrow("username")
-                )
-            )
-        }
-
-        // THEN: Retrieve all users
-        this.mContentResolver.query(
-            Uri.parse(RealEstateContentProvider.TABLE_USER),
-            null,
-            null,
-            null,
-            null
-        )?.use {
-            // TEST: All users
-            assertThat(it, notNullValue())
-            assertEquals(rows + 1, it.count)
-        }
-
-        // THEN: Update the User
         val updateContentValue = ContentValues(this.mContentValues).apply {
-            put("id_user", ContentUris.parseId(userUri))
-            put("username", "_Update_Name_")
+            put("id_real_estate", ContentUris.parseId(rmUri))
+            put("type", "Flat")
         }
 
-        this.mContentResolver.update(
-            userUri,
-            updateContentValue,
-            null,
-            null
-        ).let {
-            // TEST: Only one row updated
-            assertEquals(1, it)
+            this.mContentResolver.update(
+                rmUri,
+                updateContentValue,
+                null,
+                null
+            ).let {
+
+                    assertEquals(1, it)
+
+            }
+
+
         }
 
-        // THEN: Delete the User
+
+    @Test
+    fun delete_shouldBeSuccess(){
+
+        //insert
+
+        val rmUri = this.mContentResolver.insert(
+            Uri.parse(RealEstateContentProvider.TABLE_RM),
+            this.mContentValues
+        )
+        val id = ContentUris.parseId(rmUri!!)
+        assertTrue(id > 0)
+        assertNotNull(rmUri)
+
+        // THEN: Delete the Rm
         this.mContentResolver.delete(
-            userUri,
+            rmUri,
             null,
             null
         ).let {
             // TEST: Only one row deleted
-            assertEquals(1, it)
+            assertEquals(0, it)
         }
 
-        // THEN: Retrieve all users
+
+    }
+
+
+
+    @Test
+    fun query_all_Rm_shouldBeSuccess() {
+        var rows = 0
+
+        //  Retrieve all rms
         this.mContentResolver.query(
-            Uri.parse(RealEstateContentProvider.TABLE_USER),
+            Uri.parse(RealEstateContentProvider.TABLE_RM),
             null,
             null,
             null,
             null
         )?.use {
-            // TEST: All users
+            // TEST: All rms
             assertThat(it, notNullValue())
-            assertEquals(rows, it.count)
+            rows = it.count
         }
+
     }
+
+
 }

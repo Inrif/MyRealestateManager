@@ -1,7 +1,7 @@
 package abbesolo.com.realestatemanager.dialogs
 
 import abbesolo.com.realestatemanager.R
-import abbesolo.com.realestatemanager.utils.RMSaveTools
+import abbesolo.com.realestatemanager.utils.RMUtils
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
@@ -52,7 +52,7 @@ class RMSettingsDialog : DialogFragment() {
      */
     private fun fetchDataFromSharedPreferences() {
         this.mRootView.dialog_fragment_settings_switch.isChecked =
-            RMSaveTools.fetchBooleanFromSharedPreferences(
+            RMUtils.fetchBooleanFromSharedPreferences(
                 this.requireContext(),
                 BUNDLE_SWITCH_NOTIFICATION
             )
@@ -66,7 +66,7 @@ class RMSettingsDialog : DialogFragment() {
     private fun configureSwitch() {
         this.mRootView.dialog_fragment_settings_switch.setOnClickListener {
             if (it is SwitchMaterial) {
-                RMSaveTools.saveBooleanIntoSharedPreferences(
+                RMUtils.saveBooleanIntoSharedPreferences(
                     this.requireContext(),
                     BUNDLE_SWITCH_NOTIFICATION,
                     it.isChecked

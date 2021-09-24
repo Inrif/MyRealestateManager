@@ -37,6 +37,7 @@ data class RM(
     @ColumnInfo(name = "number_of_room")
     var roomNumber: Int? = null,
 
+    @ColumnInfo(name = "description")
     var description: String? = null,
 
     @ColumnInfo(name = "is_enable")

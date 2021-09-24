@@ -8,7 +8,7 @@ import abbesolo.com.realestatemanager.liveDatas.PhotoCreatorLiveData
 import abbesolo.com.realestatemanager.models.*
 import abbesolo.com.realestatemanager.notifications.RMNotification
 import abbesolo.com.realestatemanager.repositories.*
-import abbesolo.com.realestatemanager.utils.RMSaveTools
+import abbesolo.com.realestatemanager.utils.RMUtils
 import android.content.Context
 import android.database.sqlite.SQLiteConstraintException
 import androidx.lifecycle.LifecycleOwner
@@ -217,7 +217,7 @@ class RMViewModel(
                 .insertRealEstate(realEstate)
 
             // From SharedPreferences
-            val isEnableNotification = RMSaveTools.fetchBooleanFromSharedPreferences(
+            val isEnableNotification = RMUtils.fetchBooleanFromSharedPreferences(
                 context,
                 RMSettingsDialog.BUNDLE_SWITCH_NOTIFICATION
             )

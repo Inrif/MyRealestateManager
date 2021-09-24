@@ -1,8 +1,8 @@
 package abbesolo.com.realestatemanager.dialogs
 
 import abbesolo.com.realestatemanager.R
-import abbesolo.com.realestatemanager.utils.RMSaveTools.convertDollarToEuro
-import abbesolo.com.realestatemanager.utils.RMSaveTools.convertEuroToDollar
+import abbesolo.com.realestatemanager.utils.RMUtils.convertDollarToEuro
+import abbesolo.com.realestatemanager.utils.RMUtils.convertEuroToDollar
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle

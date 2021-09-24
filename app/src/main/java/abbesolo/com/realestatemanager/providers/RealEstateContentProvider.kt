@@ -7,10 +7,18 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 import abbesolo.com.realestatemanager.database.Database
+import abbesolo.com.realestatemanager.models.Address
+import abbesolo.com.realestatemanager.models.RM
 import abbesolo.com.realestatemanager.models.RMUser
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import kotlinx.coroutines.*
 import org.koin.android.ext.android.inject
 import java.lang.IllegalArgumentException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class RealEstateContentProvider : ContentProvider() {
@@ -19,21 +27,21 @@ class RealEstateContentProvider : ContentProvider() {
 
     // ENUMS ---------------------------------------------------------------------------------------
 
-    enum class Table(val mName: String) {
-        USER("user"),
-        USER_ID("user/#"),
+    enum class Table(val mRealesate: String) {
+        RM("rm"),
+        RM_ID("rm/#"),
     }
 
     // FIELDS --------------------------------------------------------------------------------------
 
     private val mUriMatch = UriMatcher(UriMatcher.NO_MATCH).apply {
-        addURI(AUTHORITY, Table.USER.mName, Table.USER.ordinal)
-        addURI(AUTHORITY, Table.USER_ID.mName, Table.USER_ID.ordinal)
+        addURI(AUTHORITY, Table.RM.mRealesate, Table.RM.ordinal)
+        addURI(AUTHORITY, Table.RM_ID.mRealesate, Table.RM_ID.ordinal)
     }
 
     companion object {
         private const val AUTHORITY = "abbesolo.com.realestatemanager.providers"
-        val TABLE_USER = "content://$AUTHORITY/${Table.USER.mName}"
+        val TABLE_RM = "content://$AUTHORITY/${Table.RM.mRealesate}"
     }
 
     private val mDatabase: Database by inject()
@@ -46,26 +54,25 @@ class RealEstateContentProvider : ContentProvider() {
 
     override fun insert(uri: Uri, values: ContentValues?) = runBlocking<Uri> {
         when (this@RealEstateContentProvider.mUriMatch.match(uri)) {
-            Table.USER.ordinal -> {
+            Table.RM.ordinal -> {
                 this@RealEstateContentProvider.context?.let {
-                    val user = this@RealEstateContentProvider.getUserFromContentValues(values)
+                    val rm = this@RealEstateContentProvider.getRmFromContentValues(values)
 
-                    val userId: Long = this@RealEstateContentProvider.mDatabase
-                                                                     .userDAO()
-                                                                     .insertUser(user)
+                    val rmId: Long = this@RealEstateContentProvider.mDatabase
+                                                                     .rmDAO()
+                                                                     .insertRealEstate(rm)
 
-                    if (userId != 0L) {
+                    if (rmId != 0L) {
                         it.contentResolver.notifyChange(uri, null)
-                        return@runBlocking ContentUris.withAppendedId(uri, userId)
+                        return@runBlocking ContentUris.withAppendedId(uri, rmId)
                     }
                 }
             }
 
-            Table.USER_ID.ordinal -> { /* Do nothing */ }
+            Table.RM_ID.ordinal -> { /* Do nothing */ }
 
             else -> { /* Ignore all other Uri */ }
         }
-
         throw IllegalArgumentException("Failed to insert row for uri $uri")
     }
 
@@ -77,35 +84,28 @@ class RealEstateContentProvider : ContentProvider() {
         sortOrder: String?
     ): Cursor {
         when (this.mUriMatch.match(uri)) {
-            Table.USER.ordinal -> {
+            Table.RM.ordinal -> {
                 this.context?.let {
                     val cursor: Cursor = this.mDatabase
-                                             .userDAO()
-                                             .getAllUsersWithCursor()
-
+                                             .rmDAO()
+                                             .getAllRmWithCursor()
+                    cursor.setNotificationUri(it.contentResolver, uri)
+                    return cursor
+                }
+            }
+            Table.RM_ID.ordinal -> {
+                this.context?.let {
+                    val rmId = ContentUris.parseId(uri)
+                    val cursor: Cursor = this.mDatabase
+                                             .rmDAO()
+                                             .getRmByIdWithCursor(rmId)
                     cursor.setNotificationUri(it.contentResolver, uri)
 
                     return cursor
                 }
             }
-
-            Table.USER_ID.ordinal -> {
-                this.context?.let {
-                    val userId = ContentUris.parseId(uri)
-
-                    val cursor: Cursor = this.mDatabase
-                                             .userDAO()
-                                             .getUserByIdWithCursor(userId)
-
-                    cursor.setNotificationUri(it.contentResolver, uri)
-
-                    return cursor
-                }
-            }
-
             else -> { /* Ignore all other Uri */ }
         }
-
         throw IllegalArgumentException("Failed to query row for uri $uri")
     }
 
@@ -116,14 +116,14 @@ class RealEstateContentProvider : ContentProvider() {
         selectionArgs: Array<String>?
     ): Int = runBlocking {
         when (this@RealEstateContentProvider.mUriMatch.match(uri)) {
-            Table.USER.ordinal,
-            Table.USER_ID.ordinal -> {
+            Table.RM.ordinal,
+            Table.RM_ID.ordinal -> {
                 this@RealEstateContentProvider.context?.let {
-                    val user = this@RealEstateContentProvider.getUserFromContentValues(values)
+                    val rm = this@RealEstateContentProvider.getRmFromContentValues(values)
 
                     val count: Int = this@RealEstateContentProvider.mDatabase
-                                                                   .userDAO()
-                                                                   .updateUser(user)
+                                                                   .rmDAO()
+                                                                   .updateRealEstate(rm)
 
                     it.contentResolver.notifyChange(uri, null)
 
@@ -143,12 +143,12 @@ class RealEstateContentProvider : ContentProvider() {
         selectionArgs: Array<String>?
     ): Int = runBlocking {
         when (this@RealEstateContentProvider.mUriMatch.match(uri)) {
-            Table.USER.ordinal -> { /* Do nothing */ }
+            Table.RM.ordinal -> { /* Do nothing */ }
 
-            Table.USER_ID.ordinal -> {
+            Table.RM_ID.ordinal -> {
                 this@RealEstateContentProvider.context?.let {
                     val count: Int = this@RealEstateContentProvider.mDatabase
-                                                                   .userDAO()
+                                                                   .rmDAO()
                                                                    .deleteUserById(ContentUris.parseId(uri))
 
                     it.contentResolver.notifyChange(uri, null)
@@ -165,28 +165,39 @@ class RealEstateContentProvider : ContentProvider() {
 
     override fun getType(uri: Uri): String? {
         return when (this.mUriMatch.match(uri)) {
-            Table.USER.ordinal -> "vnd.android.cursor.dir/${Table.USER.mName}"
-            Table.USER_ID.ordinal -> "vnd.android.cursor.item/${Table.USER.mName}"
+            Table.RM.ordinal -> "vnd.android.cursor.dir/${Table.RM.mRealesate}"
+            Table.RM_ID.ordinal -> "vnd.android.cursor.item/${Table.RM.mRealesate}"
 
             else -> null
         }
     }
 
-    // -- User --
+    // -- RM --
+
+
 
     /**
-     * Gets [RMUser] from [ContentValues]
+     * Gets [RM] from [ContentValues]
      * @param values a [ContentValues]
-     * @return a [RMUser]
+     * @return a [RM]
      */
-    private fun getUserFromContentValues(values: ContentValues?): RMUser {
-        return RMUser().apply {
+    private fun getRmFromContentValues(values: ContentValues?): RM {
+        return RM().apply {
             values?.let {
-                id = it.getAsLong("id_user") ?: 0L
-                username = it.getAsString("username")
-                email = it.getAsString("email")
-                urlPicture = it.getAsString("url_picture")
+                mId = it.getAsLong("id_real_estate") ?: 0L
+                type = it.getAsString("type")
+                price = it.getAsDouble("price_dollar")
+                surface = it.getAsDouble("surface_m2")
+                roomNumber = it.getAsInteger("number_of_room")
+                description = it.getAsString("description maison")
+                isEnable = it.getAsBoolean("is_enable")
+                it.getAsString("effective_date").also { effectiveDate =  Date() }
+                it.getAsString("sale_date").also { saleDate =  Date() }
+                rmAgentId = it.getAsLong("estate_agent_id")
+
             }
         }
     }
 }
+
+

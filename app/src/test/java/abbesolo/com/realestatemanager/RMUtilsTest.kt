@@ -2,16 +2,20 @@ package abbesolo.com.realestatemanager
 
 
 
-import abbesolo.com.realestatemanager.utils.convertDollarToEuro
-import abbesolo.com.realestatemanager.utils.convertEuroToDollar
-import abbesolo.com.realestatemanager.utils.getTodayDateDDMMYYYY
-import abbesolo.com.realestatemanager.utils.getTodayDateYYYYMMDD
-import abbesolo.com.realestatemanager.utils.isInternetAvailable
+
+import abbesolo.com.realestatemanager.utils.RMUtils.convertDollarToEuro
+import abbesolo.com.realestatemanager.utils.RMUtils.convertEuroToDollar
+import abbesolo.com.realestatemanager.utils.RMUtils.getTodayDateDDMMYYYY
+import abbesolo.com.realestatemanager.utils.RMUtils.getTodayDateYYYYMMDD
+import abbesolo.com.realestatemanager.utils.RMUtils.isInternetAvailable
+
+
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
+
 import org.junit.Test
 
 
@@ -24,10 +28,6 @@ import java.util.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class RMUtilsTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
 
 
     /*
@@ -121,22 +121,4 @@ class RMUtilsTest {
         assertTrue(isInternetAvailable(mockContext))
     }
 
-    @Test
-    fun isInternetAvailable_shouldBeFail() {
-        // BEFORE: Mocks
-        val mockNetworkInfo = mock<NetworkInfo> {
-            on { isConnected } doReturn false
-        }
-
-        val mockConnectivityManager = mock<ConnectivityManager> {
-            on { activeNetworkInfo } doReturn mockNetworkInfo
-        }
-
-        val mockContext = mock<Context> {
-            on { applicationContext } doReturn this.mock
-            on { getSystemService(Context.CONNECTIVITY_SERVICE) } doReturn mockConnectivityManager
-        }
-
-        assertFalse(isInternetAvailable(mockContext))
-    }
 }

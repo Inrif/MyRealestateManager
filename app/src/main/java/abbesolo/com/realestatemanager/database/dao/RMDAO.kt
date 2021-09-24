@@ -1,6 +1,7 @@
 package abbesolo.com.realestatemanager.database.dao
 
 import abbesolo.com.realestatemanager.models.*
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
@@ -173,6 +174,31 @@ interface RMDAO {
         maxNumberRoom: Int = Int.MAX_VALUE
     ): LiveData<List<RMAndPhotos>>
 
+
+
+
+    /**
+     * Usage:
+     * dao.getRmByIdWithCursor(userId)
+     */
+    @Query("""
+        SELECT * 
+        FROM rm 
+        WHERE estate_agent_id = :rmId
+        """)
+    fun getRmByIdWithCursor(rmId: Long): Cursor
+
+    /**
+     * Usage:
+     * dao.getAllWithCursor()
+     */
+    @Query("""
+        SELECT * 
+        FROM rm 
+        """)
+    fun getAllRmWithCursor(): Cursor
+
+
     // -- Update --
 
     /**
@@ -190,5 +216,16 @@ interface RMDAO {
      */
     @Delete
     suspend fun deleteRealEstate(realEstate: RM): Int
+
+    /**
+     * Usage:
+     * val numberOfDeletedRow = dao.deleteUserById(userId)
+     */
+    @Query("""
+        DELETE 
+        FROM rm 
+        WHERE estate_agent_id = :rmId
+        """)
+    suspend fun deleteUserById(rmId: Long): Int
 
 }
